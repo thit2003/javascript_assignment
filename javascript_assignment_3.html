@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filter Names</title>
+</head>
+<body>
+  <h3>Names starting with chosen letter</h3>
+  <ul id="result-list"></ul>
+
+  <script>
+    const people = [
+      "Alice Anderson",
+      "Aaron Adams",
+      "Bella Brown",
+      "Brian Black",
+      "Cathy Carter",
+      "Charles Cooper",
+      "Diana Davis",
+      "Daniel Drake",
+      "Ella Evans",
+      "Ethan Edwards",
+      "Fiona Fisher",
+      "Frank Foster",
+      "Grace Green",
+      "Gavin Gray",
+      "Hannah Harris",
+      "Henry Hill",
+      "Isabella Ingram",
+      "Ian Irving",
+      "Jack Johnson",
+      "Julia James"
+    ];
+
+    const firstLetter = "A";
+
+    const result = people.filter(name =>
+      name.trim().charAt(0).toLowerCase() === firstLetter.toLowerCase()
+    );
+
+    console.log(result);
+
+    const ul = document.getElementById("result-list");
+    result.forEach(name => {
+      const li = document.createElement("li");
+      li.textContent = name;
+      ul.appendChild(li);
+    });
+  </script>
+</body>
+</html>
