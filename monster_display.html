@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Monster Detail</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        line-height: 1.45;
+        padding: 20px;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      h3 {
+        margin-top: 0;
+      }
+      select {
+        padding: 6px 8px;
+        font-size: 14px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        background: #fff;
+      }
+      table {
+        border-collapse: collapse;
+        width: 360px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e2e8f0;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: left;
+      }
+      th {
+        width: 80px;
+        color: #334155;
+        background: #f1f5f9;
+      }
+      tr:last-child th,
+      tr:last-child td {
+        border-bottom: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h3>Monster Detail</h3>
+
+    <div>Select Monster:</div>
+
+    <div>
+      <select id="monster-list"></select>
+    </div>
+
+    <hr />
+
+    <div>
+      <table>
+        <tr>
+          <th>ID</th>
+
+          <td id="td-monster-id"></td>
+        </tr>
+
+        <tr>
+          <th>Name</th>
+
+          <td id="td-monster-name"></td>
+        </tr>
+
+        <tr>
+          <th>HP</th>
+
+          <td id="td-monster-hp"></td>
+        </tr>
+
+        <tr>
+          <th>EXP</th>
+
+          <td id="td-monster-exp"></td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      // Monster list as array of JSON objects
+
+      const monsters = [
+        {
+          id: 1,
+
+          name: "Fire Dragon",
+
+          hp: 150,
+
+          exp: 85,
+        },
+
+        {
+          id: 2,
+
+          name: "Ice Wolf",
+
+          hp: 75,
+
+          exp: 45,
+        },
+
+        {
+          id: 3,
+
+          name: "Shadow Goblin",
+
+          hp: 40,
+
+          exp: 25,
+        },
+
+        {
+          id: 4,
+
+          name: "Lightning Phoenix",
+
+          hp: 200,
+
+          exp: 120,
+        },
+
+        {
+          id: 5,
+
+          name: "Earth Golem",
+
+          hp: 180,
+
+          exp: 95,
+        },
+
+        {
+          id: 6,
+
+          name: "Poison Spider",
+
+          hp: 60,
+
+          exp: 35,
+        },
+
+        {
+          id: 7,
+
+          name: "Wind Eagle",
+
+          hp: 90,
+
+          exp: 55,
+        },
+
+        {
+          id: 8,
+
+          name: "Dark Skeleton",
+
+          hp: 65,
+
+          exp: 40,
+        },
+
+        {
+          id: 9,
+
+          name: "Crystal Unicorn",
+
+          hp: 120,
+
+          exp: 75,
+        },
+
+        {
+          id: 10,
+
+          name: "Lava Titan",
+
+          hp: 250,
+
+          exp: 150,
+        },
+      ]; // Your script goes here...
+
+      // Get DOM references
+      const selectEl = document.getElementById("monster-list");
+      const idCell = document.getElementById("td-monster-id");
+      const nameCell = document.getElementById("td-monster-name");
+      const hpCell = document.getElementById("td-monster-hp");
+      const expCell = document.getElementById("td-monster-exp");
+
+      function clearDetails() {
+        idCell.textContent = "";
+        nameCell.textContent = "";
+        hpCell.textContent = "";
+        expCell.textContent = "";
+      }
+
+      // Build dropdown options
+      const defaultOpt = document.createElement("option");
+      defaultOpt.value = "";
+      defaultOpt.textContent = "-";
+      selectEl.appendChild(defaultOpt);
+
+      monsters.forEach((m) => {
+        const opt = document.createElement("option");
+        opt.value = String(m.id);
+        opt.textContent = m.name; // safer than innerHTML
+        selectEl.appendChild(opt);
+      });
+
+      // Update detail cells when selection changes
+      selectEl.addEventListener("change", () => {
+        const selectedId = selectEl.value;
+        if (!selectedId) {
+          clearDetails();
+          return;
+        }
+        const monster = monsters.find((x) => String(x.id) === selectedId);
+        if (monster) {
+          idCell.textContent = String(monster.id);
+          nameCell.textContent = monster.name;
+          hpCell.textContent = String(monster.hp);
+          expCell.textContent = String(monster.exp);
+        } else {
+          clearDetails();
+        }
+      });
+
+      // Start with empty details
+      clearDetails();
+    </script>
+  </body>
+</html>
