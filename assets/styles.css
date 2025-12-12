@@ -1,0 +1,10 @@
+/* Error styles */
+.error-text {
+  color: #d6336c; /* bootstrap danger-ish */
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+
+.input-error {
+  border-color: #dc3545 !important; /* red border */
+}
